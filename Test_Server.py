@@ -52,9 +52,9 @@ def Main():
                         yA += y*deltime
                         zA += z*deltime
                         if(timer() - starttimer < 5):
-                            xA += 0
-                            yA += 0
-                            zA += 0                           
+                            xA = 0
+                            yA = 0
+                            zA = 0                           
                         #data = str(x) + "$$" + str(y) + "$$" + str(z)
                         data = str(xA) + "$$" + str(yA) + "$$" + str(zA)
                         connection.sendall(data.encode('utf-8'))
