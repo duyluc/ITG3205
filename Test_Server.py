@@ -3,6 +3,7 @@ from i2c_itg3205 import *
 import sys
 import socket
 import time
+from timeit import default_timer as timer
 
 
 
@@ -26,19 +27,29 @@ def Main():
 
     try:
         while True:
+            x = 0
+            y = 0
+            z = 0
             # Wait for a connection
             print('--> waiting for a connection')
             connection, client_address = sock.accept()
             print('--> connection from', client_address)
             # Receive the data in small chunks and retransmit it
             try:
+                prtime = timer()
                 while True:
                     data = connection.recv(ReceiveDataBudder)
                     if data:
                         (x,y,z) = _itg.getDegPerSecAxes()
-                        data = str(x) + "$$" + str(y) + "$$" + str(z)
+                        now = timer()
+                        deltime = timer() - prtime
+                        prtime = now
+                        xA += x*deltime
+                        yA += y*deltime
+                        zA += z*deltime
+                        #data = str(x) + "$$" + str(y) + "$$" + str(z)
+                        data = str(xA) + "$$" + str(yA) + "$$" + str(zA)
                         connection.sendall(data.encode('utf-8'))
-                        time.sleep(0.05)
                     else:
                         print('--> no more data from', client_address)
                         connection.close()
