@@ -51,7 +51,7 @@ def Main():
                         xA += x*deltime
                         yA += y*deltime
                         zA += z*deltime
-                        if(timer() - starttimer < 5):
+                        if(timer() - starttimer < 7):
                             xA = 0
                             yA = 0
                             zA = 0                           
