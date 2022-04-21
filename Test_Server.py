@@ -55,7 +55,7 @@ def Main():
                     else:
                         xE = (xE + _x)/2
                         yE = (yE + _y)/2
-                        #zE = (zE + _z)/2
+                        zE = (zE + _z)/2
                     sleep(0.05)
                     
 
