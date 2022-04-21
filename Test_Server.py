@@ -43,7 +43,7 @@ def Main():
                         print('--> no more data from', client_address)
                         connection.close()
                         break
-            finally:
+            except Exception:
                 connection.close()
                 break
                     
