@@ -86,7 +86,7 @@ def Main():
                         connection.close()
                         break
             except Exception as e:
-                print(str(e))
+                print(str(e.value))
                 connection.close()
                 break
                     
