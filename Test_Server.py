@@ -67,6 +67,7 @@ def Main():
                     data = connection.recv(ReceiveDataBudder)
                     if data:
                         (x,y,z) = _itg.getDegPerSecAxes()
+                        print(z)
                         (x,y,yaw) = _adx.RollPitch()
                         now = timer()
                         deltime = timer() - prtime
