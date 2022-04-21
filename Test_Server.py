@@ -85,7 +85,8 @@ def Main():
                         print('--> no more data from', client_address)
                         connection.close()
                         break
-            except Exception:
+            except Exception as e:
+                print(str(e))
                 connection.close()
                 break
                     
