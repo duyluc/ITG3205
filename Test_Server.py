@@ -24,7 +24,7 @@ def Main():
     sock.listen(1)
 
     _itg = i2c_itg3205(1)
-
+    starttimer = 0
     try:
         while True:
             x = 0
@@ -40,6 +40,7 @@ def Main():
             # Receive the data in small chunks and retransmit it
             try:
                 prtime = timer()
+                starttimer = timer()
                 while True:
                     data = connection.recv(ReceiveDataBudder)
                     if data:
@@ -50,6 +51,10 @@ def Main():
                         xA += x*deltime
                         yA += y*deltime
                         zA += z*deltime
+                        if(timer() - starttimer < 5):
+                            xA += 0
+                            yA += 0
+                            zA += 0                           
                         #data = str(x) + "$$" + str(y) + "$$" + str(z)
                         data = str(xA) + "$$" + str(yA) + "$$" + str(zA)
                         connection.sendall(data.encode('utf-8'))

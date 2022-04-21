@@ -10,7 +10,7 @@ import java.io.IOException;
 Serial myPort;
 
 String data="";
-float roll, pitch,yaw;
+float x, y,z;
 
 void setup() {
   size (960, 640, P3D);
@@ -22,12 +22,12 @@ void draw() {
   translate(width/2, height/2, 0);
   background(33);
   textSize(22);
-  text("Roll: " + int(roll) + "     Pitch: " + int(pitch), -100, 265);
+  text("X: " + int(x) + "     Y: " + int(y) + "     Z: " + int(z), -100, 265);
 
   // Rotate the object
-  rotateX(radians(roll));
-  rotateZ(radians(-pitch));
-  rotateY(radians(-yaw));
+  rotateX(radians(x));
+  rotateZ(radians(y));
+  rotateY(radians(z));
   
   // 3D 0bject
   textSize(30);  
@@ -35,7 +35,6 @@ void draw() {
   box (386, 40, 200); // Draw box
   textSize(25);
   fill(255, 255, 255);
-  text("www.HowToMechatronics.com", -183, 10, 101);
 
   //delay(10);
   //println("ypr:\t" + angleX + "\t" + angleY); // Print the values to check whether we are getting proper values
@@ -53,9 +52,9 @@ void serialEvent (Serial myPort) {
     if (items.length > 1) {
 
       //--- Roll,Pitch in degrees
-      roll = float(items[0]);
-      pitch = float(items[1]);
-      yaw = float(items[2]);
+      x = float(items[0]);
+      y = float(items[1]);
+      z = float(items[2]);
     }
   }
 }
