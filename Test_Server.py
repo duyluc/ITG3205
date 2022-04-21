@@ -39,6 +39,23 @@ def Main():
             print('--> connection from', client_address)
             # Receive the data in small chunks and retransmit it
             try:
+                #cal error
+                xE = 0
+                yE = 0
+                zE = 0
+
+                for i in range(0,10):
+                    (_x,_y,_z) = _itg.getDegPerSecAxes()
+                    if i == 0:
+                        xE = _x
+                        yE = _y
+                        zE = _z
+                    else:
+                        xE = (xE + _x)/2
+                        yE = (yE + _y)/2
+                        zE = (zE + _z)/2
+
+
                 prtime = timer()
                 starttimer = timer()
                 while True:
@@ -48,9 +65,9 @@ def Main():
                         now = timer()
                         deltime = timer() - prtime
                         prtime = now
-                        xA += x*deltime
-                        yA += y*deltime
-                        zA += z*deltime
+                        xA += (x - xE)*deltime
+                        yA += (y - yE)*deltime
+                        zA += (z - zE)*deltime
                         if(timer() - starttimer < 7):
                             xA = 0
                             yA = 0
