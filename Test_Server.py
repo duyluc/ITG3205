@@ -41,7 +41,6 @@ def Main():
                     time.sleep(0.05)
                 else:
                     print('--> no more data from', client_address)
-                    break
                 
         finally:
             connection.close()
