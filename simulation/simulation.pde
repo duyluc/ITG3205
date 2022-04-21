@@ -25,9 +25,9 @@ void draw() {
   text("X: " + int(x) + "     Y: " + int(y) + "     Z: " + int(z), -100, 265);
 
   // Rotate the object
-  rotateX(radians(y));
+  rotateX(radians(-y));
   rotateZ(radians(x));
-  rotateY(radians(z));
+  rotateY(radians(-z));
   
   // 3D 0bject
   textSize(30);  

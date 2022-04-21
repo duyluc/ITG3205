@@ -46,7 +46,7 @@ def Main():
                 yE = 0
                 zE = 0
 
-                for i in range(0,20):
+                for i in range(0,100):
                     (_x,_y,_z) = _itg.getDegPerSecAxes()
                     if i == 0:
                         xE = _x
@@ -56,6 +56,7 @@ def Main():
                         xE = (xE + _x)/2
                         yE = (yE + _y)/2
                         zE = (zE + _z)/2
+                    time.sleep(0.05)
                     
 
 
