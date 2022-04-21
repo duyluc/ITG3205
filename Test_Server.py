@@ -30,6 +30,9 @@ def Main():
             x = 0
             y = 0
             z = 0
+            xA = 0
+            yA = 0
+            zA = 0
             # Wait for a connection
             print('--> waiting for a connection')
             connection, client_address = sock.accept()
