@@ -24,29 +24,31 @@ def Main():
 
     _itg = i2c_itg3205(1)
 
-    while True:
-        # Wait for a connection
-        print('--> waiting for a connection')
-        connection, client_address = sock.accept()
-        try:
+    try:
+        while True:
+            # Wait for a connection
+            print('--> waiting for a connection')
+            connection, client_address = sock.accept()
             print('--> connection from', client_address)
-
             # Receive the data in small chunks and retransmit it
-            while True:
-                data = connection.recv(ReceiveDataBudder)
-                if data:
-                    (x,y,z) = _itg.getDegPerSecAxes()
-                    data = str(x) + "$$" + str(y) + "$$" + str(z)
-                    connection.sendall(data.encode('utf-8'))
-                    time.sleep(0.05)
-                else:
-                    print('--> no more data from', client_address)
-                    break
-                
-        finally:
-            connection.close()
-            print("Over!!!")
-            break
+            try:
+                while True:
+                    data = connection.recv(ReceiveDataBudder)
+                    if data:
+                        (x,y,z) = _itg.getDegPerSecAxes()
+                        data = str(x) + "$$" + str(y) + "$$" + str(z)
+                        connection.sendall(data.encode('utf-8'))
+                        time.sleep(0.05)
+                    else:
+                        print('--> no more data from', client_address)
+                        connection.close()
+                        break
+            finally:
+                connection.close()
+                break
+                    
+    finally:
+        print("Over!!!")
 
 if __name__ == "__main__":
     Main()
