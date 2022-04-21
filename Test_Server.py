@@ -25,7 +25,7 @@ def Main():
     sock.listen(1)
 
     _itg = i2c_itg3205(1)
-    _adx = i2c_adxl345(1)
+    #_adx = i2c_adxl345(1)
     starttimer = 0
     try:
         while True:
@@ -65,7 +65,7 @@ def Main():
                     data = connection.recv(ReceiveDataBudder)
                     if data:
                         (x,y,z) = _itg.getDegPerSecAxes()
-                        (x,y,yaw) = _adx.RollPitch()
+                        #(x,y,yaw) = _adx.RollPitch()
                         now = timer()
                         deltime = timer() - prtime
                         prtime = now
@@ -86,7 +86,6 @@ def Main():
                         connection.close()
                         break
             except Exception as e:
-                print(str(e.value))
                 connection.close()
                 break
                     
