@@ -2,9 +2,9 @@ from http import server
 from i2c_itg3205 import *
 import sys
 import socket
-import time
 from i2c_adxl345 import *
 from timeit import default_timer as timer
+from time import sleep
 
 
 
@@ -56,7 +56,7 @@ def Main():
                         xE = (xE + _x)/2
                         yE = (yE + _y)/2
                         zE = (zE + _z)/2
-                    time.sleep(0.05)
+                    sleep(0.05)
                     
 
 
