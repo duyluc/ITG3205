@@ -42,12 +42,15 @@ try:
             yF = y
             zF = z
         else:
-            xF = 0.94 * xF + 0.06 * x
-            yF = 0.94 * yF + 0.06 * y
-            zF = 0.94 * zF + 0.06 * z
-            # xF = x
+            # xF = 0.94 * xF + 0.06 * x
+            # yF = 0.94 * yF + 0.06 * y
+            # zF = 0.94 * zF + 0.06 * z
+            xF = x
             # yF = y
             # zF = z
+
+            yF = 0.94 * yF + 0.06 * y
+            zF = 0.94 * zF + 0.06 * z
         senddata = str(xF) + "/" + str(yF) + "/" + str(zF) + "\n"
         ser.write(senddata.encode("ASCII"))
 except Exception as e:
